@@ -1,9 +1,8 @@
-
 using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] private Enemy _enemy;
 
     public void Spawn()
     {

@@ -1,13 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public class Spaner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     [SerializeField] private int _secondsBetweenSpawn;
-    private SpawnPoint[] _spawnPoints;
 
-    void Start()
+    private SpawnPoint[] _spawnPoints;
+    private WaitForSeconds _waitForSeconds;
+
+    private void Start()
     {
+        _waitForSeconds = new WaitForSeconds(_secondsBetweenSpawn);
         _spawnPoints = FindObjectsOfType<SpawnPoint>();
         StartCoroutine(Spawn()); 
     }
@@ -17,7 +20,7 @@ public class Spaner : MonoBehaviour
         while (true)
         {
             _spawnPoints[Random.Range(0, _spawnPoints.Length)].Spawn();
-            yield return new WaitForSeconds(_secondsBetweenSpawn);
+            yield return _waitForSeconds;
         }           
     }
 }
